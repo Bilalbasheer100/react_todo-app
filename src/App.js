@@ -5,6 +5,19 @@ import {useState} from 'react'
 function App() {
   const [toDos,setTodos] =useState([])
 const [toDo,setTodo] =useState('')
+const deleteTask = (index)=> {
+
+  var ask = window.confirm("Do you want to delete the task?");
+  if (ask) {
+    const test = [...toDos];
+      test.splice(index, 1);
+
+      setTodos(test)
+  }else {
+    console.log("Don't delete");
+  }
+
+}
   return (
     <div className="app">
     <div className="mainHeading">
@@ -42,7 +55,7 @@ const [toDo,setTodo] =useState('')
           <p>{obj.text}</p>
         </div>
         <div className="right">
-          <i className="fas fa-times"></i>
+          <i  onClick={()=>deleteTask()} className="fas fa-times" ></i>
         </div>
       </div> )
     }) }
@@ -60,5 +73,6 @@ const [toDo,setTodo] =useState('')
   </div>
   );
 }
+
 
 export default App;
